@@ -8,5 +8,5 @@ urlpatterns = [
     path('ubah/<int:product_id>', views.update_product, name="update_product"),
     path('delete/<int:product_id>', views.delete_product, name="delete_product"),
 
-    path('get-data-api/', GetDataApi.as_view(), name='GetDataApi'),
+    path('get-data-api/', GetDataApi.as_view(), name='get_data_api'),
 ]

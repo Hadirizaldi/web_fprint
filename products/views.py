@@ -108,7 +108,8 @@ class GetDataApi(View):
         api_data = api_service.fetch_data_and_save()
 
         if api_data:
-            return HttpResponse("Data berhasil disimpan ke database.")
+            print("Data berhasil disimpan ke database.")
+            return redirect('index')
         else:
             return HttpResponse("Gagal menyimpan data ke database.")
     

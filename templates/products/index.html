@@ -6,6 +6,7 @@
 {% block content %}
 <div class="container mt-5">
   <h2 class="mb-4">Product List</h2>
+  {% if products %}
   <table class="table table-striped table-hover table-sm table-bordered">
     <thead>
       <tr>
@@ -58,6 +59,34 @@
       Tambah
     </button>
   </div>
+
+  {% else %}
+  <p>Tidak ada produk yang tersedia. Silahkan generate dari API.</p>
+
+  <div class="card mt-4">
+    <div class="card-header">
+      <h5 class="card-title">Informasi Peserta Test</h5>
+    </div>
+    <div class="card-body">
+      <p class="card-text">Nama: Hadi Rizaldi Rahmanto</p>
+      <p class="card-text">Email: hadirizaldi.hr@gmail.com</p>
+      <p class="card-text">
+        linkedin
+        <a href="https://www.linkedin.com/in/hadi-rizaldi-1b8358211/"
+          >HadiRizaldi
+        </a>
+      </p>
+      <p class="card-text">No Wa: 089625171232</p>
+      <button
+        type="button"
+        class="btn btn-success"
+        onclick="window.location.href='{% url 'get_data_api' %}'"
+      >
+        Tarik Data API
+      </button>
+    </div>
+  </div>
+  {% endif %}
 </div>
 
 {% endblock %}
