@@ -1,0 +1,41 @@
+{% extends "base.html" %} {% block content %}
+<div class="container mt-5">
+  <h2 class="mb-4">Product List</h2>
+  <table class="table table-striped table-hover table-sm table-bordered">
+    <thead>
+      <tr>
+        <th scope="col">No</th>
+        <th scope="col">Nama</th>
+        <th scope="col">Harga</th>
+        <th scope="col">Kategori</th>
+        <th scope="col">Status</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Place your dynamic data here -->
+      {% for product in products %} {% load humanize %}
+      <tr>
+        <th scope="row">{{ forloop.counter }}</th>
+        <td>{{product.product_name}}</td>
+        <td>{{ product.price|floatformat:0|intcomma}}</td>
+        <td>{{product.category_id}}</td>
+        <td>{{product.status_id}}</td>
+        <td class="action-buttons">
+          <button type="button" class="btn btn-primary btn-sm">Edit</button>
+          <button type="button" class="btn btn-danger btn-sm ml-2">
+            Delete
+          </button>
+        </td>
+      </tr>
+      {% endfor %}
+      <!-- Add more rows as needed -->
+    </tbody>
+  </table>
+
+  <div class="text-right">
+    <button type="button" class="btn btn-success">Tambah</button>
+  </div>
+</div>
+
+{% endblock %}

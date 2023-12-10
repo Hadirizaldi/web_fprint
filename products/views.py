@@ -1,13 +1,22 @@
 from django.views import View
 from django.http import HttpResponse
+from django.shortcuts import render
+
 from products.api_service import ApiService
+from products.models import Product
 from products.utils import generate_password_md5, generate_username
 
 
 
 # Create your views here.
 def index(request) :
-    return HttpResponse("Hello, world. You're at the products index.")
+    products = Product.objects.filter(status_id__status_name="bisa dijual")
+
+    context = {
+        'products' : products
+    }
+
+    return render(request, 'products/index.html', context)
 
 class GetDataApi(View):
     def get(self, request, *args, **kwargs):
