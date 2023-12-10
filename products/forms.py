@@ -5,7 +5,7 @@ from products.models import Product, Category
 class ProductForm(ModelForm):
   class Meta :
     model = Product
-    exclude = ['id']
+    fields = '__all__'
 
     widgets = {
       'product_name': forms.TextInput(attrs={'class': 'form-control '}),

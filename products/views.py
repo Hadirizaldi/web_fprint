@@ -1,6 +1,6 @@
 from django.views import View
 from django.http import HttpResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import render, get_object_or_404, redirect
 
 from products.api_service import ApiService
 from products.models import Product
@@ -19,6 +19,8 @@ def index(request) :
     }
 
     return render(request, 'products/index.html', context)
+
+# for CRUD
 
 def add_product(request):
     success_massage = 'Data berhasil disimpan.'
@@ -39,8 +41,38 @@ def add_product(request):
             return render(request, 'products/add_product.html', context)
     else:
         form = ProductForm()
+        context.pop("success_message")
         context['form'] = form
     return render(request, 'products/add_product.html', context)
+
+def update_product(request, product_id):
+    product = Product.objects.get(id = product_id)
+    success_massage = 'Data berhasil diubah.'
+    title = "Tambah Produk"
+    context = {
+        "success_message": success_massage,
+        'title': title,
+        "product_id" : product_id
+    }  
+
+    if request.method == "POST":
+        form = ProductForm(request.POST, instance=product)
+        context['form'] = form
+
+        if form.is_valid():
+            form.save()
+
+            # return render(request, 'products/update_product.html', product_id = product_id, context=context )
+            return render(request,'products/update_product.html', context )
+    else :
+        form = ProductForm(instance=product)
+        context.pop("success_message")
+        context['form'] = form
+
+        print(product_id)
+        print(form)
+    
+    return render(request, 'products/update_product.html', context)
 
 
 # for API 
