@@ -20,6 +20,7 @@
     <tbody>
       <!-- Place your dynamic data here -->
       {% for product in products %} {% load humanize %}
+
       <tr>
         <th scope="row">{{ forloop.counter }}</th>
         <td>{{product.product_name}}</td>
@@ -32,10 +33,14 @@
             class="btn btn-primary btn-sm"
             onclick="window.location.href='{% url 'update_product' product.id %}'"
           >
-            Edit
+            Ubah
           </button>
-          <button type="button" class="btn btn-danger btn-sm ml-2">
-            Delete
+          <button
+            type="button"
+            class="btn btn-danger btn-sm"
+            onclick="window.location.href='{% url 'delete_product' product.id %}'"
+          >
+            Hapus
           </button>
         </td>
       </tr>

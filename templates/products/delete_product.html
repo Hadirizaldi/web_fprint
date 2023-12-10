@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+<!-- ======================= -->
+
+{% block title %} {{ title }} {% endblock %}
+<!-- ======================= -->
+
+{% block content %}
+<div class="container mt-5">
+  <div class="card w-75 mx-auto">
+    <div class="card-header text-center">
+      <h2 class="mb-0">{{ title }}</h2>
+    </div>
+    <div class="card-body">
+      <p>
+        Apakah Anda yakin ingin menghapus produk "{{ product.product_name }}"?
+      </p>
+      <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Ya, Hapus</button>
+        <a href="{% url 'index' %}" class="btn btn-secondary ms-2">Tidak</a>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

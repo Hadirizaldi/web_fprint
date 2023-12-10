@@ -74,6 +74,27 @@ def update_product(request, product_id):
     
     return render(request, 'products/update_product.html', context)
 
+# def delete_product(request, product_id):
+#     product = Product.objects.filter(id= product_id)
+#     product.delete()
+
+#     return render('index')
+
+def delete_product(request, product_id):
+    product = get_object_or_404(Product, pk=product_id)
+
+    if request.method == "POST":
+        product.delete()
+        return redirect('index')
+    
+    title = "Hapus Produk"
+    context = {
+        'title': title,
+        'product': product,
+    }
+
+    return render(request, 'products/delete_product.html', context)
+
 
 # for API 
 class GetDataApi(View):
