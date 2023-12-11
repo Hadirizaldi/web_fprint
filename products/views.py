@@ -48,7 +48,7 @@ def add_product(request):
 def update_product(request, product_id):
     product = Product.objects.get(id = product_id)
     success_massage = 'Data berhasil diubah.'
-    title = "Tambah Produk"
+    title = "Ubah Data Produk"
     context = {
         "success_message": success_massage,
         'title': title,
